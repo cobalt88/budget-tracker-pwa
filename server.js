@@ -6,7 +6,7 @@ const { MongoClient } = require("mongodb");
 
 
 const PORT = process.env.PORT || 3001;
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/budget";
+const uri = process.env.MONGODB_URI || "mongodb://localhost/budget";
 
 const app = express();
 
@@ -18,11 +18,18 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect(MONGODB_URI, {
-  useNewUrlParser: true,
-  useFindAndModify: false,
-  useUnifiedTopology: true
-});
+const client = new MongoClient(uri, { useUnifiedTopology: true });
+
+const dbConnect = async() => {
+  try {
+    await client.connect();
+    console.log("Connected to MongoDB");
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+dbConnect();
 
 // routes
 app.use(require("./routes/api.js"));
