@@ -7,7 +7,7 @@ const compression = require("compression");
 const PORT = process.env.PORT || 3001;
 const uri = process.env.MONGODB_URI;
 
-mongoose.connect(mongoUri, {
+mongoose.connect(uri, {
   useNewUrlParser: true,
   useFindAndModify: false,
   useUnifiedTopology: true
