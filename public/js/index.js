@@ -144,6 +144,12 @@ function sendTransaction(isAdding) {
   });
 }
 
+window.addEventListener('beforeinstallprompt', (event) => {
+  event.preventDefault();
+  window.deferredPrompt = event;
+  divInstall.classList.toggle('hidden', false);
+});
+
 document.querySelector("#add-btn").onclick = function() {
   sendTransaction(true);
 };
