@@ -2,9 +2,11 @@ const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const compression = require("compression");
+const { MongoClient } = require("mongodb");
+
 
 const PORT = process.env.PORT || 3001;
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/budget";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://cobalt88:<password>@budgettracker.bz4u3.mongodb.net/?retryWrites=true&w=majority";
 
 const app = express();
 
